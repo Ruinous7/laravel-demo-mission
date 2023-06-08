@@ -2,17 +2,43 @@
 
 @section('content')
 
-@foreach ( $products as $product )
+<style>
 
-<div class="container">
-    <ul>
-        <li><b>{{ $product->name }}</b></li>
-        <li>{{ $product->price }}</></li>
-        <li>{{ $product->discount }}</></li>
-        <li>{{ $product->favorite == '1' ? "Favorite Item" : " Not a Favorite Item" }}</></li>
-    </ul>
-</div>
+    .basic-grid {
+      display: grid;
+      gap: 2rem;
+      grid-template-columns: repeat(5,1fr) ;
+      justify-content: center;
+    }
 
-@endforeach
+</style>
+
+<div>
+    <header>
+        <nav class="navbar" style="border:1px solid lightgray; height: 90px">
+            <div class="container-fluid">
+                <ul class="nav nav-underline">
+                    <li class="nav-item">
+                      <a class="nav-link">מוצרים</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link">מועדפים</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <section>
+    </section>
+</div><br>
+
+<section class="basic-grid">
+    @foreach ( $products as $product )
+
+        <x-product-card :product="$product"/>
+
+    @endforeach
+</section>
+
 
 @endsection
