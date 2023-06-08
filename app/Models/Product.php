@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Faker\Guesser\Name;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -13,6 +14,6 @@ class Product extends Model
         'name',
         'price',
         'discount',
-        'favorite',
+        'favorite'
     ];
 }

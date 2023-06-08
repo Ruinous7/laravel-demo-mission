@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->float('price');
             $table->integer('discount');
-            $table->boolean('favorite');
+            $table->boolean('favorite')->default(false);
             $table->timestamps();
         });
     }
