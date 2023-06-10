@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Demo-Mission</title>
+    <title>Document</title>
 </head>
 <style>
     .header { grid-area: header; }
@@ -26,21 +26,20 @@
     <div class="appContainer">
         <!-- App's NavBar -->
         <div class="header">
-            <x-nav-bar/>
+            <x-header/>
         </div>
         <!-- App's Store Component-->
         <div class="store">
-            @yield('content')
+            <x-store :products="$products"/>
         </div>
         <!-- App's Shopping Cart -->
-        <div class="cart">
-            <x-shopping-cart/>
+        <div class="cart" >
+            <x-cart :products="$products"/>
         </div>
         <!-- App's Footer-->
         <div className="footer" style="justifyContent:center">
-          <x-footer/>
+            <x-footer/>
         </div>
     </div>
 </body>
 </html>
-
