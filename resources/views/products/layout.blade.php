@@ -6,10 +6,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>laravel-demo-mission</title>
 </head>
 <style>
-    .header { grid-area: header; }
+    .store-header { grid-area: store-header; }
+    .cart-header { grid-area: cart-header; }
     .store { grid-area: store; }
     .cart { grid-area: cart; }
     .footer { grid-area: footer}
@@ -17,7 +18,7 @@
     .appContainer{
         display: grid;
         grid-template-areas:
-        'header header header header header header'
+        'store-header store-header store-header store-header store-header cart-header'
         'store store store store store cart'
         'footer footer footer footer footer footer'
     }
@@ -25,8 +26,11 @@
 <body>
     <div class="appContainer">
         <!-- App's NavBar -->
-        <div class="header">
-            <x-header/>
+        <div class="store-header">
+            <x-store-header/>
+        </div>
+        <div class="cart-header">
+            <x-cart-header/>
         </div>
         <!-- App's Store Component-->
         <div class="store">
