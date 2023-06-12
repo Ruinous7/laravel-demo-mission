@@ -12,16 +12,21 @@
             'store store store store store cart'
         }
 
+        .card-container{
+            display: grid;
+            justify-content: center;
+            grid-template-columns:repeat(3,1fr)
+        }
+
         .card{
+            box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
             width: 12rem;
-            height: 12rem;
-            padding: 70px 0;
+            height: 6rem;
             text-align: center;
         }
     </style>
 
     <section class="storeContainer">
-
         <header>
             <nav class="navbar" style="border:1px solid lightgray; height: 90px">
                 <div class="container-fluid">
@@ -36,51 +41,57 @@
                 </div>
             </nav>
         </header>
-        <main>
-            <div class="basic-grid">
-                @if ($favoritePage==false)
+        <main class="card-container" style="position:relative">
+            @if ($favoritePage==false)
+            @foreach ( $products as $product )
+                <div class="card" wire:key="product-{{ $product->id }}" >
+                    @if ( $product->favorite )
+                        <svg wire:click="setFavorite({{ $product->id }})" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6" width="30" height="24" style="position:absolute; left:20px; top:20px">
+                            <path d="M11.645 20.91l-.007-.003-.022-.012a15.247 15.247 0 01-.383-.218 25.18 25.18 0 01-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0112 5.052 5.5 5.5 0 0116.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 01-4.244 3.17 15.247 15.247 0 01-.383.219l-.022.012-.007.004-.003.001a.752.752 0 01-.704 0l-.003-.001z" />
+                        </svg>
+                    @else
+                        <svg wire:click="setFavorite({{ $product->id }})" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6" width="30" height="24" style="position:absolute; left:20px; top:20px">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+                        </svg>
+                    @endif
+                    <div class="card-body" wire:click.lazy="setInOrder({{ $product->id }})">
+                        <h5 class="card-title">{{ $product->name }}</h5>
+                        <h5 class="card-title">₪{{ $product->price }}</h5>
+                    </div>
+                </div>
+            @endforeach
+            @endif
+            @if ($favoritePage)
                 @foreach ( $products as $product )
-                    <div class="card" wire:key="product-{{ $product->id }}" wire:click.lazy="setInOrder({{ $product->id }})">
-                        @if ( $product->favorite )
+                    @if ( $product->favorite )
+                        <div class="card" wire:key="product-{{ $product->id }}">
                             <svg wire:click="setFavorite({{ $product->id }})" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6" width="30" height="24" style="position:absolute; left:20px; top:20px">
                                 <path d="M11.645 20.91l-.007-.003-.022-.012a15.247 15.247 0 01-.383-.218 25.18 25.18 0 01-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0112 5.052 5.5 5.5 0 0116.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 01-4.244 3.17 15.247 15.247 0 01-.383.219l-.022.012-.007.004-.003.001a.752.752 0 01-.704 0l-.003-.001z" />
                             </svg>
-                        @else
-                            <svg wire:click="setFavorite({{ $product->id }})" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6" width="30" height="24" style="position:absolute; left:20px; top:20px">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
-                            </svg>
-                        @endif
-                        <div class="card-body">
-                            <h5 class="card-title">{{ $product->name }}</h5>
-                            <h5 class="card-title">₪{{ $product->price }}</h5>
-                        </div>
-                    </div>
-                @endforeach
-                @endif
-                @if ($favoritePage)
-                    @foreach ( $products as $product )
-                        @if ( $product->favorite )
-                            <div class="card" wire:key="product-{{ $product->id }}" wire:click.lazy="setInOrder({{ $product->id }})">
-                                <svg wire:click="setFavorite({{ $product->id }})" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6" width="30" height="24" style="position:absolute; left:20px; top:20px">
-                                    <path d="M11.645 20.91l-.007-.003-.022-.012a15.247 15.247 0 01-.383-.218 25.18 25.18 0 01-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0112 5.052 5.5 5.5 0 0116.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 01-4.244 3.17 15.247 15.247 0 01-.383.219l-.022.012-.007.004-.003.001a.752.752 0 01-.704 0l-.003-.001z" />
-                                </svg>
-                                <div class="card-body">
-                                    <h5 class="card-title">{{ $product->name }}</h5>
-                                    <h5 class="card-title">₪{{ $product->price }}</h5>
-                                </div>
+                            <div class="card-body" wire:click.lazy="setInOrder({{ $product->id }})" >
+                                <h5 class="card-title">{{ $product->name }}</h5>
+                                <h5 class="card-title">₪{{ $product->price }}</h5>
                             </div>
-                        @endif
-                    @endforeach
-                @endif
-            </div>
+                        </div>
+                    @endif
+                @endforeach
+            @endif
         </main>
         <aside>
             <table class="table table-hover" style="border:1px solid lightgray">
                 <thead style="height:89px">
                     <tr>
-                      <th scope="col">יחידות</th>
-                      <th scope="col">שם המוצר</th>
-                      <th scope="col">סיכום</th>
+                        <th scope="col">
+                            <div style="position:relative; top:-20px">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="30" height="24" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
+                                </svg>
+                                סל מוצרים
+                            </div>
+                            יחידות
+                        </th>
+                        <th scope="col">שם המוצר</th>
+                        <th scope="col">סיכום</th>
                     </tr>
                 </thead>
                 <tbody>
