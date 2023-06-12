@@ -9,11 +9,23 @@
     <title>laravel-demo-mission</title>
 </head>
 <style>
+    /*.store-header { grid-area: store-header; }
+    .cart-header { grid-area: cart-header; }
+    main {grid-area: main;}
 
+    .appContainer{
+        display: grid;
+        grid-template-areas:
+        'header-header header-header header-header header-header header-header cart-header'
+        'main main main main main main'
+
+    }*/
 </style>
-<body>
+<body class="appContainer">
 @livewireStyles
-    <x-store-header/>
+    <header>
+        <x-store-header class="store-header"/>
+    </header>
     <main>
         @livewire('store')
     </main>

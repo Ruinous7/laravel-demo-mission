@@ -1,4 +1,4 @@
-<header>
+
     <nav class="navbar" style="border:1px solid lightgray; height: 100px">
         <span>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" width="30" height="24" className="d-inline-block align-text-top">
@@ -7,4 +7,4 @@
             <b style="fontSize:24px">סל מוצרים</b>
         </span>
     </nav>
-</header>
+
