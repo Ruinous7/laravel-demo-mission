@@ -1,66 +1,59 @@
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+### קרא אותי!
 
-## About Laravel
+Welcome the the Boostapp-Laravel Demo Mission.
+The start the application please follow the instructions Below
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+1. Make sure your system has: PHP , Composer , Node.js & a Database and that your Code Editor supports php.blade.
+- Also make sure your System Environment Variables has a path for your PHP directory and the php.ini has "extension=zip" without ";".
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+2. Download or Clone the app's directive from [GitHub](https://github.com/Ruinous7/laravel-demo-mission).
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+3. Run composer install
+   ```sh
+   composer install
+   ```
+4. Create .env
+   ```sh
+   cp .env.example .env
+   ```
+5. Generate key
+   ```sh
+   php artisan key:generate
+   ```
+6. Run npm install
+   ```sh
+   npm install
+7. Run npm run dev
+   ```sh
+   npm run dev
+   ```
+8. Run migration files (if you're using mySQL, if not please connect your DB to the application first in the .env file)
+   ```sh
+   php artisan migrate
+   ```
+9. Run seeders
+   ```sh
+   php artisan db:seed
+   ```
+10. Run on your localhost
+   ```sh
+   php artisan serve
+   ```
 
-## Learning Laravel
+## And your application is ready to run
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+# My Reflection on the mission;
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+I had to learn what is MVC , as my background in programming came from JavaScript, it was strange for me to work with that and i had to learn how to dynamics of the Model, View and Controller work, and how to router renders my views.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+After migrating the database and seeding the "Products" and their counterpart table "Cart_items" , I've Realized that the store that i'm supposed to build is a SPA and that the normal MVC dynamics just wont work for the purpose of the mission and i've discoverd Livewire , which brings a more JavaScript SPA feel for developing the mission.
 
-## Laravel Sponsors
+# What I need to improve;
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+I need to layout the site better with relative parent and child components, the css needs some more work.
+I also tried implementing a "Cart Component" for the "Cart_items" table but when i called that component functions they triggered too slow for my liking, Basically because every time i change for example the product's quantity by clicking it from the Store component , it would take some time from the event listener to tell the Cart component to trigger a function, send a message to the server and return it to me in the client, which in my JavaScript programming this wont be a problem because i have an inner state which solves this problem.
 
-### Premium Partners
+# Thanks for Reading !
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
