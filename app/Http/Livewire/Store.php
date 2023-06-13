@@ -16,9 +16,6 @@ class Store extends Component
     public $vat = 0;
     public $totalSum = 0;
 
-
-
-
     public $favoritePage = false;
     public $productsPage = true;
 
@@ -28,13 +25,11 @@ class Store extends Component
     {
         $this->getProducts();
         $this->finalSumCalculator();
-        $this->finalSumCalculator();
     }
 
     public function render()
     {
         return view('livewire.store');
-
     }
 
     // Task's (DB Side) 2 & 3 & 6 - The Imports from the DB ; (Favorite Products will be filtered in the view).
@@ -43,6 +38,9 @@ class Store extends Component
     {
         $this->products = Product::orderByDesc('created_at')->get();
         $this->cart_items = Cart::orderByDesc('created_at')->get();
+
+        // Checking if any Cart Item as a discount and Calculating it's final Price
+
         foreach($this->cart_items as $item){
             if($item->discount_num>0){
                 $calculatedPrice = $this->percentageCalculator($item->price_num,$item->qty,$item->discount_num);
@@ -163,7 +161,5 @@ class Store extends Component
         $this->getProducts();
         $this->finalSumCalculator();
     }
-
-
 
 }
